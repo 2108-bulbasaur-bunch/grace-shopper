@@ -1,8 +1,7 @@
 const Sequelize = require('sequelize');
-const { all } = require('sequelize/types/lib/operators');
 const db = require('../db')
 
-const Product = db.define("products", {
+const Product = db.define("product", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -11,7 +10,7 @@ const Product = db.define("products", {
     },
   },
   price: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DECIMAL(10, 2),
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -41,8 +40,6 @@ const Product = db.define("products", {
       notEmpty: true
     }
   }
-
-
 })
 
 module.exports = Product;
