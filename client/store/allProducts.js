@@ -2,7 +2,7 @@ import axios from "axios";
 
 const SET_PRODUCTS = 'SET_PRODUCTS';
 const ADD_PRODUCT = 'ADD_PRODUCT';
-const DELETE_PRODUCT = 'DELETE PRODUCT';
+const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 export const setProducts = (products) => {
   return {
@@ -50,7 +50,7 @@ export const addProductThunk = (product) => {
 export const deleteProductThunk = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await.delete(`/api/products/${id}`);
+      const { data } = await axios.delete(`/api/products/${id}`);
       dispatch(deleteProduct(data));
     } catch (error) {
       console.log(error);
