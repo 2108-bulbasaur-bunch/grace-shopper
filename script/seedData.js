@@ -1,13 +1,124 @@
 const cartData = [
   {
-
+    quantity: 1,
+    orderId: 1,
+    productId: 13
+  },
+  {
+    quantity: 2,
+    orderId: 1,
+    productId: 1
+  },
+  {
+    quantity: 8,
+    orderId: 2,
+    productId: 11
+  },
+  {
+    quantity: 1,
+    orderId: 2,
+    productId: 19
+  },
+  {
+    quantity: 3,
+    orderId: 3,
+    productId: 2,
+  },
+  {
+    quantity: 1,
+    orderId: 3,
+    productId: 13,
+  },
+  {
+    quantity: 2,
+    orderId: 4,
+    productId: 6,
+  },
+  {
+    quantity: 4,
+    orderId: 4,
+    productId: 4,
+  },
+  {
+    quantity: 1,
+    orderId: 4,
+    productId: 10,
+  },
+  {
+    quantity: 3,
+    orderId: 5,
+    productId: 9,
+  },
+  {
+    quantity: 3,
+    orderId: 5,
+    productId: 15,
+  },
+  {
+    quantity: 8,
+    orderId: 6,
+    productId: 17,
+  },
+  {
+    quantity: 12,
+    orderId: 6,
+    productId: 18,
+  },
+  {
+    quantity: 4,
+    orderId: 6,
+    productId: 20,
+  },
+  {
+    quantity: 1,
+    orderId: 7,
+    productId: 5,
   },
 
 ]
 
 const orderData = [
   {
-
+    complete: true,
+    purchaseDate: 09-21-2021,
+    totalPrice: 45.75,
+    userId: 4
+  },
+  {
+    complete: true,
+    purchaseDate: 09-21-2021,
+    totalPrice: 67.00,
+    userId: 4
+  },
+  {
+    complete: true,
+    purchaseDate: 09-21-2021,
+    totalPrice: 33.33,
+    userId: 5,
+  },
+  {
+    complete: false,
+    purchaseDate: 09-21-2021,
+    totalPrice: 33.20,
+    userId: 5
+  },
+  {
+    complete: true,
+    purchaseDate: 09-21-2021,
+    totalPrice: 34.95,
+    userId: 6
+  },
+  {
+    complete: false,
+    purchaseDate: 09-21-2021,
+    totalPrice: 85.80,
+    userId: 6
+  },
+  {
+    complete: false,
+    purchaseDate: 09-21-2021,
+    totalPrice: 6.50,
+    userId: 7
   },
 ]
 
