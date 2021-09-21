@@ -22,4 +22,8 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 	}
 });
 
-//POST: sign-up
+//GET All single user's orders - purchase history
+// /:userId/orders
+
+
+
