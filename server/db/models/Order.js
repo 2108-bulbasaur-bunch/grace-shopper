@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const Order = db.define('order', {
-  status: {
+  completed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
     validate: {
@@ -11,12 +11,14 @@ const Order = db.define('order', {
   },
 
   purchaseDate: {
-    type: Sequelize.STRING,
-    defaultValue: null
+    type: Sequelize.DATE,
+    allowNull: false
   },
 
   totalPrice: {
-    type: Sequelize.DECIMAL(10, 2)
+    type: Sequelize.DECIMAL(10, 2),
+    defaultValue: 0.00,
+    allowNull: false
   }
 })
 
