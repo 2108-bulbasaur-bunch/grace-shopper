@@ -15,7 +15,7 @@ class SingleProduct extends React.Component {
       <div key={product.id}>
         <img src={product.imageURL} width="250" height="250" />
         <h3>{product.name}</h3>
-        <h5>{product.price}</h5>
+        <h5>{product.price / 100}</h5>
         <p>{product.description}</p>
         <form>
           <select>
