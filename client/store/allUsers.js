@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const TOKEN = "token";
-
 //action type
 
 const GET_ALL_USERS = "GET_ALL_USERS";
@@ -16,16 +14,9 @@ const getAllUsers = (users) => {
 
 //thunk
 export const fetchAllUsers = () => async (dispatch) => {
-	const token = window.localStorage.getItem(TOKEN);
-	if (token) {
-		const res = await axios.get("api/users", {
-			header: {
-				authorization: token,
-			},
-		});
+	const res = await axios.get("api/users");
 
-		return dispatch(getAllUsers(res.data));
-	}
+	return dispatch(getAllUsers(res.data));
 };
 
 //reducer
