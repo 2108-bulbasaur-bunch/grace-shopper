@@ -79,44 +79,44 @@ const cartData = [
 
 const orderData = [
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
+    completed: true,
+    purchaseDate: 2021-09-21,
     totalPrice: 45.75,
     userId: 4
   },
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
+    completed: true,
+    purchaseDate: 2021-09-20,
     totalPrice: 67.00,
     userId: 4
   },
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
+    completed: true,
+    purchaseDate: 2021-09-19,
     totalPrice: 33.33,
     userId: 5,
   },
   {
-    complete: false,
-    purchaseDate: 09-21-2021,
+    completed: false,
+    purchaseDate: 2021-09-18,
     totalPrice: 33.20,
     userId: 5
   },
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
+    completed: true,
+    purchaseDate: 2021-09-17,
     totalPrice: 34.95,
     userId: 6
   },
   {
-    complete: false,
-    purchaseDate: 09-21-2021,
+    completed: false,
+    purchaseDate: 2021-09-16,
     totalPrice: 85.80,
     userId: 6
   },
   {
-    complete: false,
-    purchaseDate: 09-21-2021,
+    completed: false,
+    purchaseDate: 2021-09-17,
     totalPrice: 6.50,
     userId: 7
   },
