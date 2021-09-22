@@ -4,7 +4,7 @@ import { fetchSingleUser } from "../store/SingleUser";
 
 export class SingleUser extends React.Component {
 	componentDidMount() {
-		this.props.getSingleUser(this.props.match.params.Id);
+		this.props.getSingleUser(this.props.match.params.id);
 	}
 	render() {
 		const { user } = this.props;
