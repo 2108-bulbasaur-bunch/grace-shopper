@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const TOKEN = "token";
+
 //action type
 const GET_SINGLE_USER = "GET_SINGLE_USER";
 
@@ -14,9 +16,16 @@ const getSingleUser = (user) => {
 //thunk
 export const fetchSingleUser = (id) => async (dispatch) => {
 	try {
-		const { data } = await axios.get(`api/users/${id}`);
+		const token = window.localStorage.getItem(TOKEN);
+		if (token) {
+			const { data } = await axios.get(`/api/users/${id}`, {
+				header: {
+					authorization: token,
+				},
+			});
 
-		return dispatch(getSingleUser(data));
+			return dispatch(getSingleUser(data));
+		}
 	} catch (error) {
 		console.log(error);
 	}
