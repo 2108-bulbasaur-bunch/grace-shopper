@@ -14,7 +14,7 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-	if (!req.user.admin) {
+	if (!req.user.isAdmin) {
 		res.status(403).send("Admin only");
 	} else {
 		next();
