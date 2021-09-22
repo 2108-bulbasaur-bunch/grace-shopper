@@ -14,12 +14,6 @@ const Order = db.define('order', {
     type: Sequelize.DATE,
     allowNull: false
   },
-
-  totalPrice: {
-    type: Sequelize.DECIMAL(10, 2),
-    defaultValue: 0.00,
-    allowNull: false
-  }
 })
 
 module.exports = Order;
