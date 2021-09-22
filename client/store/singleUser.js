@@ -18,7 +18,7 @@ export const fetchSingleUser = (id) => async (dispatch) => {
 
 		return dispatch(getSingleUser(data));
 	} catch (error) {
-		next(error);
+		console.log(error);
 	}
 };
 

@@ -14,9 +14,13 @@ const getAllUsers = (users) => {
 
 //thunk
 export const fetchAllUsers = () => async (dispatch) => {
-	const res = await axios.get("api/users");
+	try {
+		const res = await axios.get("api/users");
 
-	return dispatch(getAllUsers(res.data));
+		return dispatch(getAllUsers(res.data));
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 //reducer
