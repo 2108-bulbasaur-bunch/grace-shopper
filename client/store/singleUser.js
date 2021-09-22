@@ -13,9 +13,13 @@ const getSingleUser = (user) => {
 
 //thunk
 export const fetchSingleUser = (id) => async (dispatch) => {
-	const { data } = await axios.get(`api/users/${id}`);
+	try {
+		const { data } = await axios.get(`api/users/${id}`);
 
-	return dispatch(getSingleUser(data));
+		return dispatch(getSingleUser(data));
+	} catch (error) {
+		next(error);
+	}
 };
 
 //reducer
