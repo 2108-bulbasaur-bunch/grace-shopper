@@ -9,6 +9,7 @@ export class AllUsers extends React.Component {
 	}
 	render() {
 		const { allUsers } = this.props;
+		console.log("USERS", allUsers)
 		return (
 			<div>
 				<h1>UserList</h1>
@@ -36,7 +37,7 @@ export class AllUsers extends React.Component {
 
 const mapState = (state) => {
 	return {
-		allUsers: state.users,
+		allUsers: state.allUsers,
 	};
 };
 

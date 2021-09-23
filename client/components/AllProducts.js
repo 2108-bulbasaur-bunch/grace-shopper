@@ -23,7 +23,10 @@ class AllProducts extends React.Component {
       return (
         <div className="all-products">
           {products.map((product) => {
-            return <SingleProduct key={product.id} product={product} />;
+            return <div key={product.id}>
+              <h1>{product.name}</h1>
+              </div>
+            // (<SingleProduct key={product.id} props={product} />);
           })}
         </div>
       );

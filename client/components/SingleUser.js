@@ -4,10 +4,11 @@ import { fetchSingleUser } from "../store/SingleUser";
 
 export class SingleUser extends React.Component {
 	componentDidMount() {
-		this.props.getSingleUser(this.props.match.params.id);
+		this.props.getSingleUser(this.props.match.params.userId);
 	}
 	render() {
 		const { user } = this.props;
+
 		return (
 			<div>
 				<h1>User infomation</h1>
@@ -28,7 +29,7 @@ export class SingleUser extends React.Component {
 }
 
 const mapState = (state) => ({
-	users: state.user,
+	user: state.singleUser,
 });
 
 const mapDispatch = (dispatch) => ({
