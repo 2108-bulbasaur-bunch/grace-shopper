@@ -1,31 +1,37 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import { fetchProducts } from "../store/allProducts";
+import SingleProduct from "./SingleProduct";
 
 class AllProducts extends React.Component {
+  
   componentDidMount() {
     this.props.getProducts();
   }
 
   render() {
+    const products = this.props.products;
+
     return (
       <div className="all-products">
-        {/* map through products */}
+        {products.map((product) => {
+          return <SingleProduct key={product.id} product={product} />;
+        })}
       </div>
-    )
+    );
   }
 }
 
 const mapState = (state) => {
   return {
-    products: state.products
-  }
-}
+    products: state.products,
+  };
+};
 
 const mapDispatch = (dispatch) => {
   return {
-    getProducts: () => dispatch(fetchProducts())
-  }
-}
+    getProducts: () => dispatch(fetchProducts()),
+  };
+};
 
 export default connect(mapState, mapDispatch)(AllProducts);
