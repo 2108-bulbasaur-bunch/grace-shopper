@@ -1,124 +1,124 @@
-const cartData = [
+const itemData = [
   {
     quantity: 1,
+    purchasePrice: 2525,
     orderId: 1,
     productId: 13
   },
   {
     quantity: 2,
+    purchasePrice: 1025,
     orderId: 1,
     productId: 1
   },
   {
     quantity: 8,
+    purchasePrice: 650,
     orderId: 2,
     productId: 11
   },
   {
     quantity: 1,
+    purchasePrice: 1500,
     orderId: 2,
     productId: 19
   },
   {
     quantity: 3,
+    purchasePrice: 850,
     orderId: 3,
     productId: 2,
   },
   {
     quantity: 1,
+    purchasePrice: 2525,
     orderId: 3,
     productId: 13,
   },
   {
     quantity: 2,
+    purchasePrice: 500,
     orderId: 4,
     productId: 6,
   },
   {
     quantity: 4,
+    purchasePrice: 375,
     orderId: 4,
     productId: 4,
   },
   {
     quantity: 1,
+    purchasePrice: 820,
     orderId: 4,
     productId: 10,
   },
   {
     quantity: 3,
+    purchasePrice: 515,
     orderId: 5,
     productId: 9,
   },
   {
     quantity: 3,
+    purchasePrice: 650,
     orderId: 5,
     productId: 15,
   },
   {
     quantity: 8,
+    purchasePrice: 275,
     orderId: 6,
     productId: 17,
   },
   {
     quantity: 12,
+    purchasePrice: 325,
     orderId: 6,
     productId: 18,
   },
   {
     quantity: 4,
+    purchasePrice: 650,
     orderId: 6,
-    productId: 20,
+    productId: 18,
   },
   {
     quantity: 1,
+    purchasePrice: 650,
     orderId: 7,
-    productId: 5,
+    productId: 20,
   },
-
 ]
 
 const orderData = [
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
-    totalPrice: 45.75,
-    userId: 4
+    completed: true,
+    purchaseDate: 2021-09-21,
   },
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
-    totalPrice: 67.00,
-    userId: 4
+    completed: true,
+    purchaseDate: 2021-09-20,
   },
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
-    totalPrice: 33.33,
-    userId: 5,
+    completed: true,
+    purchaseDate: 2021-09-19,
   },
   {
-    complete: false,
-    purchaseDate: 09-21-2021,
-    totalPrice: 33.20,
-    userId: 5
+    completed: false,
+    purchaseDate: 2021-09-18,
   },
   {
-    complete: true,
-    purchaseDate: 09-21-2021,
-    totalPrice: 34.95,
-    userId: 6
+    completed: true,
+    purchaseDate: 2021-09-17,
   },
   {
-    complete: false,
-    purchaseDate: 09-21-2021,
-    totalPrice: 85.80,
-    userId: 6
+    completed: false,
+    purchaseDate: 2021-09-16,
   },
   {
-    complete: false,
-    purchaseDate: 09-21-2021,
-    totalPrice: 6.50,
-    userId: 7
+    completed: false,
+    purchaseDate: 2021-09-17,
   },
 ]
 
@@ -184,7 +184,7 @@ const userData = [
 const productData = [
   {
     name: "Strawberry Shortcake",
-    price: 10.25,
+    price: 1025,
     quantity: 20,
     imageUrl: "https://live.staticflickr.com/7215/6904795572_7d46f1e1e2_b.jpg",
     description:
@@ -192,7 +192,7 @@ const productData = [
   },
   {
     name: "Chocolate Fantasy",
-    price: 8.5,
+    price: 850,
     quantity: 13,
     imageUrl: "https://live.staticflickr.com/4150/5064794605_866d037308_b.jpg",
     description:
@@ -200,7 +200,7 @@ const productData = [
   },
   {
     name: "Apple Cider Donuts",
-    price: 4.0,
+    price: 400,
     quantity: 50,
     imageUrl: "https://live.staticflickr.com/4151/5224664021_32fa2785bd.jpg",
     description:
@@ -208,7 +208,7 @@ const productData = [
   },
   {
     name: "Baklava",
-    price: 3.75,
+    price: 375,
     quantity: 23,
     imageUrl:
       "https://hips.hearstapps.com/del.h-cdn.co/assets/16/41/baklava.jpg",
@@ -217,7 +217,7 @@ const productData = [
   },
   {
     name: "Banoffee Pie",
-    price: 6.5,
+    price: 650,
     quantity: 1,
     imageUrl:
       "https://hips.hearstapps.com/del.h-cdn.co/assets/15/23/980x694/gallery-1433538911-banoffee-pie.jpg",
@@ -226,7 +226,7 @@ const productData = [
   },
   {
     name: "Gulab Jamun",
-    price: 5.5,
+    price: 550,
     quantity: 54,
     imageUrl:
       "https://hips.hearstapps.com/del.h-cdn.co/assets/16/41/india-gulab-jamun.jpg",
@@ -235,7 +235,7 @@ const productData = [
   },
   {
     name: "Bread Pudding",
-    price: 4.25,
+    price: 425,
     quantity: 18,
     imageUrl: "https://live.staticflickr.com/3051/2812129223_f380e9f78f_b.jpg",
     description:
@@ -243,7 +243,7 @@ const productData = [
   },
   {
     name: "Rice Pudding",
-    price: 4.35,
+    price: 435,
     quantity: 25,
     imageUrl: "https://live.staticflickr.com/1919/43801037610_56b1de2c09_b.jpg",
     description:
@@ -251,7 +251,7 @@ const productData = [
   },
   {
     name: "Flan",
-    price: 5.15,
+    price: 515,
     quantity: 44,
     imageUrl: "https://live.staticflickr.com/157/412109682_d0d9061ee3_b.jpg",
     description:
@@ -259,7 +259,7 @@ const productData = [
   },
   {
     name: "Key Lime Pie",
-    price: 8.2,
+    price: 820,
     quantity: 12,
     imageUrl: "https://live.staticflickr.com/6017/5941648290_898fbcbce3_b.jpg",
     description:
@@ -267,7 +267,7 @@ const productData = [
   },
   {
     name: "Mochi",
-    price: 6.5,
+    price: 650,
     quantity: 85,
     imageUrl: "https://live.staticflickr.com/5013/5405990686_a0d3943f18.jpg",
     description:
@@ -275,7 +275,7 @@ const productData = [
   },
   {
     name: "Blueberry Pie",
-    price: 7.8,
+    price: 780,
     quantity: 8,
     imageUrl: "https://live.staticflickr.com/3241/2607537730_5eb3e2cf59.jpg",
     description:
@@ -283,7 +283,7 @@ const productData = [
   },
   {
     name: "King Cake",
-    price: 25.25,
+    price: 2525,
     quantity: 5,
     imageUrl: "https://live.staticflickr.com/7064/6824455002_61b4124f6b_b.jpg",
     description:
@@ -291,7 +291,7 @@ const productData = [
   },
   {
     name: "Pan au Chocolate",
-    price: 2.5,
+    price: 250,
     quantity: 31,
     imageUrl: "https://live.staticflickr.com/4178/33934326290_90caf92514_b.jpg",
     description:
@@ -299,7 +299,7 @@ const productData = [
   },
   {
     name: "Tiramisu",
-    price: 6.5,
+    price: 650,
     quantity: 12,
     imageUrl: "https://live.staticflickr.com/4121/4770627308_be88bb83a6_b.jpg",
     description:
@@ -307,7 +307,7 @@ const productData = [
   },
   {
     name: "Banana Pudding",
-    price: 5.5,
+    price: 550,
     quantity: 30,
     imageUrl: "https://live.staticflickr.com/4121/4770627308_be88bb83a6_b.jpg",
     description:
@@ -315,7 +315,7 @@ const productData = [
   },
   {
     name: "Macarons",
-    price: 2.75,
+    price: 275,
     quantity: 71,
     imageUrl: "https://live.staticflickr.com/5050/5267826325_3ca56611a2_b.jpg",
     description:
@@ -323,7 +323,7 @@ const productData = [
   },
   {
     name: "Cupcake",
-    price: 3.25,
+    price: 325,
     quantity: 45,
     imageUrl: "https://live.staticflickr.com/1109/1035503826_d3eebb6c7c_b.jpg",
     description:
@@ -331,7 +331,7 @@ const productData = [
   },
   {
     name: "Cheesecake",
-    price: 15.0,
+    price: 1500,
     quantity: 18,
     imageUrl: "https://live.staticflickr.com/3165/2395337982_b18ee7cd19_b.jpg",
     description:
@@ -339,7 +339,7 @@ const productData = [
   },
   {
     name: "Fruit Tart",
-    price: 6.5,
+    price: 650,
     quantity: 20,
     imageUrl:
       "https://preppykitchen.com/wp-content/uploads/2016/04/Fruit-tart-2019-feature.jpg",
@@ -348,7 +348,7 @@ const productData = [
   },
   {
     name: "Creme Brulee",
-    price: 10.25,
+    price: 1025,
     quantity: 20,
     imageUrl:
       "https://www.nuggetmarket.com/media/images/13/02/creme-brulee-square.jpg",
@@ -358,4 +358,4 @@ const productData = [
 ];
 
 
-module.exports = {productData, cartData, userData, orderData}
+module.exports = {productData, itemData, userData, orderData}

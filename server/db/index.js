@@ -12,8 +12,9 @@ const Item = require('./models/Item')
 User.hasMany(Order);
 Order.belongsTo(User);
 
-Product.belongsToMany(Order, { through: Item })
 Order.belongsToMany(Product, { through: Item })
+Product.belongsToMany(Order, { through: Item })
+
 
 module.exports = {
   db,

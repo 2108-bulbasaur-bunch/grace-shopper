@@ -8,7 +8,6 @@ const Item = db.define('item', {
   },
   purchasePrice: {
     type: Sequelize.INTEGER,
-    allowNull: false
   }
 })
 
