@@ -20,7 +20,7 @@ export const fetchAllUsers = () => async (dispatch) => {
 		const token = window.localStorage.getItem(TOKEN);
 		if (token) {
 			const res = await axios.get("/api/users", {
-				header: {
+				headers: {
 					authorization: token,
 				},
 			});

@@ -9,7 +9,13 @@ app.use(morgan("dev"));
 
 // body parsing middleware
 app.use(express.json());
-app.use("/", (req, res) => console.log("req", req));
+// app.use("/", (req, res) => {
+// 	console.log("req", req.headers)
+// 	res.send('hello')
+// 	}
+// );
+
+
 // auth and api routes
 app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
