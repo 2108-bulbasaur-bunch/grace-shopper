@@ -3,8 +3,11 @@ const {
 } = require("../db");
 
 const isLoggedIn = async (req, res, next) => {
+	console.log("isLogginIn");
 	try {
-		const user = await User.findByToken(req.header.authorization);
+		const user = await User.findByToken(req.headers.authorization);
+		console.log("token,req.header", req.headers);
+
 		if (user) {
 			next();
 		}
