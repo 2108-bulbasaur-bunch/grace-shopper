@@ -17,13 +17,10 @@ class SingleProduct extends React.Component {
         <h3>{product.name}</h3>
         <h5>{product.price / 100}</h5>
         <p>{product.description}</p>
+        <p>Quantity Left: {product.quantity}</p>
         <form>
-          <select>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+          {/* <label>Quantity: <input type="text"/> </label>*/}
+          <button type="submit">Add to Cart</button>
         </form>
       </div>
     );
