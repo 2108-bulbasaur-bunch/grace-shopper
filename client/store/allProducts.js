@@ -28,8 +28,8 @@ export const deleteProduct = (product) => {
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/api/products');
-      dispatch(setProducts(data));
+      const response = await axios.get('/api/products');
+      dispatch(setProducts(response.data));
     } catch (error) {
       console.log(error)
     }
