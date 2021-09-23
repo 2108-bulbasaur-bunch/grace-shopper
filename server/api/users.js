@@ -4,8 +4,6 @@ const {
 } = require("../db");
 const { isLoggedIn, isAdmin } = require("./adminFunc");
 
-module.exports = router;
-
 //Get: user listing page for admin only
 //+  need to check if it is admin first
 router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
@@ -22,8 +20,16 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 	}
 });
 
+//GET single user
+router.get("/:userId", isLoggedIn, isAdmin, async (req, res, next) => {
+	try {
+		const user = await User.findByPk(req.params.userId)
+		res.send(user);
+	} catch (error) {
+		next(error)
+	}
+})
+
+module.exports = router;
 //GET All single user's orders - purchase history
 // /:userId/orders
-
-
-

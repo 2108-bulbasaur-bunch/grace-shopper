@@ -9,6 +9,7 @@ export class AllUsers extends React.Component {
 	}
 	render() {
 		const { allUsers } = this.props;
+		console.log("USERS", allUsers)
 		return (
 			<div>
 				<h1>UserList</h1>
@@ -18,7 +19,7 @@ export class AllUsers extends React.Component {
 					) : (
 						<div>
 							{allUsers.map((user) => (
-								<Link to={`/users/${user.id} key={user.id}`}>
+								<Link to={`/users/${user.id}`} key={user.id}>
 									<div>
 										<div>{user.firstName}</div>
 										<div>{user.lastName}</div>
@@ -36,7 +37,7 @@ export class AllUsers extends React.Component {
 
 const mapState = (state) => {
 	return {
-		allUsers: state.users,
+		allUsers: state.allUsers,
 	};
 };
 

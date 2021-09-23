@@ -9,13 +9,13 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    const product = this.props.product;
+    const {product} = this.props;
 
     return (
       <div key={product.id}>
         <img src={product.imageURL} width="250" height="250" />
         <h3>{product.name}</h3>
-        <h5>{product.price / 100}</h5>
+        <h5>{product.price}</h5>
         <p>{product.description}</p>
         <p>Quantity Left: {product.quantity}</p>
         <form>
@@ -29,7 +29,7 @@ class SingleProduct extends React.Component {
 
 const mapState = (state) => {
   return {
-    product: state.product,
+    product: state.singleProduct,
   };
 };
 

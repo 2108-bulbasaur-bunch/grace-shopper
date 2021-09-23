@@ -19,7 +19,7 @@ export const fetchSingleUser = (id) => async (dispatch) => {
 		const token = window.localStorage.getItem(TOKEN);
 		if (token) {
 			const { data } = await axios.get(`/api/users/${id}`, {
-				header: {
+				headers: {
 					authorization: token,
 				},
 			});
