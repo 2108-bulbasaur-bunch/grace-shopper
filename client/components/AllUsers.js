@@ -46,4 +46,4 @@ const mapDispatch = (dispatch) => {
 	};
 };
 
-export default connect(mapState, mapDispatch(AllUsers));
+export default connect(mapState, mapDispatch)(AllUsers);

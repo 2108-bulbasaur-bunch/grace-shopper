@@ -10,7 +10,8 @@ export class SingleUser extends React.Component {
 		const { user } = this.props;
 		return (
 			<div>
-				{user.id ? (
+				<h1>User infomation</h1>
+				{user ? (
 					<div>
 						<div>{user.id}</div>
 						<div>{user.firstName + " " + user.lastName}</div>
@@ -34,4 +35,4 @@ const mapDispatch = (dispatch) => ({
 	getSingleUser: (id) => dispatch(fetchSingleUser(id)),
 });
 
-export default connect(mapState, mapDispatch(SingleUser));
+export default connect(mapState, mapDispatch)(SingleUser);
