@@ -15,33 +15,59 @@ async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
 
-  const productArray = await Promise.all(
-    productData.map((product) => {
-      return Product.create(product);
-    })
-  )
-  const itemArray = await Promise.all(
-    itemData.map((item) => {
-      return Item.create(item);
-    })
-  )
-  const userArray = await Promise.all(
-    userData.map((user) => {
-      return User.create(user);
-    })
-  )
   const orderArray = await Promise.all(
     orderData.map((order) => {
       return Order.create(order);
     })
   )
-  // const users = await Promise.all([
-  //   User.create({ username: 'cody', password: '123' }),
-  //   User.create({ username: 'murphy', password: '123' }),
-  // ])
-  console.log(`seeded successfully`)
 
-  return productArray, itemArray, userArray, orderArray
+  console.log(Object.getPrototypeOf(orderArray[0]))
+
+  const userArray = await Promise.all(
+    userData.map((user) => {
+      return User.create(user);
+    })
+  )
+
+  const productArray = await Promise.all(
+    productData.map((product) => {
+      return Product.create(product);
+    })
+  )
+  console.log(Object.getPrototypeOf(productArray[0]))
+
+
+  await orderArray[0].setUser(userArray[3]);
+  await orderArray[1].setUser(userArray[3]);
+  await orderArray[2].setUser(userArray[4]);
+  await orderArray[3].setUser(userArray[4]);
+  await orderArray[4].setUser(userArray[5]);
+  await orderArray[5].setUser(userArray[5]);
+  await orderArray[6].setUser(userArray[6]);
+
+  // await orderArray[0].setProducts(productArray[12]);
+  // await orderArray[0].setProducts(productArray[0]);
+  // await orderArray[1].setProducts(productArray[10]);
+  // await orderArray[1].setProducts(productArray[18]);//items row 2
+  // await orderArray[2].setProducts(productArray[1]);
+  // await orderArray[2].setProducts(productArray[12]); //items row 3
+  // await orderArray[3].setProducts(productArray[5]);
+  // await orderArray[3].setProducts(productArray[3]); //items row 1
+  // await orderArray[3].setProducts(productArray[9]);
+  // await orderArray[4].setProducts(productArray[8]); //items row 4
+  // await orderArray[4].setProducts(productArray[14]); //items row 5
+  // await orderArray[5].setProducts(productArray[16]);
+  // await orderArray[5].setProducts(productArray[17]);
+  // await orderArray[5].setProducts(productArray[19]); //items row 6
+  // await orderArray[6].setProducts(productArray[4]); //items row 7
+
+  const itemArray = await Promise.all(
+    itemData.map((item) => {
+      return Item.create(item);
+    })
+  )
+
+  console.log(`seeded successfully`)
 }
 
 /*

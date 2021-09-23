@@ -1,66 +1,94 @@
 const itemData = [
   {
     quantity: 1,
-    purchasePrice: 2525
+    purchasePrice: 2525,
+    orderId: 1,
+    productId: 13
   },
   {
     quantity: 2,
     purchasePrice: 1025,
+    orderId: 1,
+    productId: 1
   },
   {
     quantity: 8,
     purchasePrice: 650,
+    orderId: 2,
+    productId: 11
   },
   {
     quantity: 1,
     purchasePrice: 1500,
+    orderId: 2,
+    productId: 19
   },
   {
     quantity: 3,
     purchasePrice: 850,
+    orderId: 3,
+    productId: 2,
   },
   {
     quantity: 1,
     purchasePrice: 2525,
+    orderId: 3,
+    productId: 13,
   },
   {
     quantity: 2,
     purchasePrice: 500,
+    orderId: 4,
+    productId: 6,
   },
   {
     quantity: 4,
     purchasePrice: 375,
+    orderId: 4,
+    productId: 4,
   },
   {
     quantity: 1,
     purchasePrice: 820,
+    orderId: 4,
+    productId: 10,
   },
   {
     quantity: 3,
     purchasePrice: 515,
+    orderId: 5,
+    productId: 9,
   },
   {
     quantity: 3,
     purchasePrice: 650,
+    orderId: 5,
+    productId: 15,
   },
   {
     quantity: 8,
     purchasePrice: 275,
+    orderId: 6,
+    productId: 17,
   },
   {
     quantity: 12,
     purchasePrice: 325,
+    orderId: 6,
+    productId: 18,
   },
   {
     quantity: 4,
     purchasePrice: 650,
+    orderId: 6,
+    productId: 18,
   },
   {
     quantity: 1,
     purchasePrice: 650,
+    orderId: 7,
+    productId: 20,
   },
-
-
 ]
 
 const orderData = [
