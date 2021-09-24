@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSingleUser } from "../store/SingleUser";
+import { fetchSingleUser } from "../store/oneUser";
 
 export class SingleUser extends React.Component {
 	componentDidMount() {
