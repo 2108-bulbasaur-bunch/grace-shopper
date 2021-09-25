@@ -24,7 +24,7 @@ const Product = db.define("product", {
       min: 0,
     }
   },
-  imageURL: {
+  imageUrl: {
     type: Sequelize.TEXT,
     allowNull: false,
     defaultValue: "https://live.staticflickr.com/7215/6904795572_7d46f1e1e2_b.jpg",
