@@ -37,8 +37,8 @@ async function seed() {
   console.log(Object.getPrototypeOf(productArray[0]))
 
 
-  await orderArray[0].setUser(userArray[3]);
-  await orderArray[1].setUser(userArray[3]);
+  await orderArray[0].setUser(userArray[1]);
+  await orderArray[1].setUser(userArray[2]);
   await orderArray[2].setUser(userArray[4]);
   await orderArray[3].setUser(userArray[4]);
   await orderArray[4].setUser(userArray[5]);
