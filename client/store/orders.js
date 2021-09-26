@@ -1,13 +1,13 @@
 import axios from "axios";
 
 //action type
-const SET_ORDERS = "SET_ORDERS";
+const SET_ORDER_HISTORY = "SET_ORDER_HISTORY";
 const CREATE_CART = "CREATE_CART";
 
 //action creator
-const set_orders = (orders) => {
+const set_order_history = (orders) => {
 	return {
-		type: SET_ORDERS,
+		type: SET_ORDER_HISTORY,
 		orders,
 	};
 };
@@ -22,11 +22,11 @@ const create_cart = (order) => {
 //thunk creator
 
 //order history by userId
-export const fetchOrders = (userId) => {
+export const fetchOrderHistory = (userId) => {
 	return async (dispatch) => {
 		try {
 			const { data } = await axios.get(`/api/orders/${userId}`);
-			dispatch(set_orders(data));
+			dispatch(set_order_history(data));
 		} catch (error) {
 			console.log(error);
 		}
@@ -47,7 +47,7 @@ export const createCartThunk = (userId) => {
 //reducer
 export default function cartReducer(state = [], action) {
 	switch (action.type) {
-		case SET_ORDERS:
+		case SET_ORDER_HISTORY:
 			return action.orders;
 		case CREATE_CART:
 			return [...state, action.order];

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchOrders } from "../store/orders";
+import { fetchOrderHistory } from "../store/orders";
 
 class OrderHistory extends React.Component {
 	constructor(props) {
@@ -37,7 +37,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
 	return {
-		getOrderHistory: (userId) => dispatch(fetchOrders(userId)),
+		getOrderHistory: (userId) => dispatch(fetchOrderHistory(userId)),
 	};
 };
 

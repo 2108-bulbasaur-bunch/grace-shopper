@@ -18,10 +18,11 @@ class Cart extends React.Component {
 		console.log("props", this.props);
 		const cart = this.props.cart;
 		const products = this.props.products;
+		let quantity = 0;
 
 		return (
 			<div>
-				<div>Cart</div>
+				<h2>Cart</h2>
 				{!cart[0] ? (
 					<div>empty cart</div>
 				) : (
@@ -35,8 +36,23 @@ class Cart extends React.Component {
 										)[0].name
 									}
 								</div>
-								<div>qty: {item.quantity}</div>
-								<div>purchasePrice: {item.purchasePrice}</div>
+								{
+									(quantity = products.filter(
+										(product) => product.id === item.productId
+									)[0].quantity)
+								}
+
+								<select>
+									{Array.from(Array(quantity), (e, i) => {
+										return (
+											<option selected={i + 1 == item.quantity ? true : false}>
+												{i + 1}
+											</option>
+										);
+									})}
+								</select>
+
+								<div>purchasePrice: ${item.purchasePrice}</div>
 							</div>
 						))}
 					</div>
