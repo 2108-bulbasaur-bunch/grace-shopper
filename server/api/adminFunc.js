@@ -4,7 +4,6 @@ const {
 
 const isLoggedIn = async (req, res, next) => {
 	try {
-		console.log("this is the req", req.headers)
 		req.user = await User.findByToken(req.headers.authorization);
 		if (req.user) {
 			next();
