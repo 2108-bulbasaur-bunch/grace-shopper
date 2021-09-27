@@ -4,7 +4,6 @@ const {
 
 const isLoggedIn = async (req, res, next) => {
 	try {
-		console.log("this is the req", req.headers)
 		req.user = await User.findByToken(req.headers.authorization);
 		if (req.user) {
 			next();
@@ -21,6 +20,15 @@ const isAdmin = (req, res, next) => {
 		next();
 	}
 };
+
+//isSameUser
+
+
+
+//isSameUserOrAdmin -- just for the user detail view scenario(or if ever you needed an admin and the same user to see something)
+
+
+
 
 module.exports = {
 	isLoggedIn,

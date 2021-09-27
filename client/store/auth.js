@@ -21,7 +21,7 @@ export const me = () => async (dispatch) => {
 	if (token) {
 		const res = await axios.get("/auth/me", {
 			headers: {
-				"authorization": token,
+				authorization: token,
 			},
 		});
 		return dispatch(setAuth(res.data));
@@ -31,6 +31,17 @@ export const me = () => async (dispatch) => {
 export const authenticate = (email, password, method) => async (dispatch) => {
 	try {
 		const res = await axios.post(`/auth/${method}`, { email, password });
+		window.localStorage.setItem(TOKEN, res.data.token);
+		dispatch(me());
+	} catch (authError) {
+		return dispatch(setAuth({ error: authError }));
+	}
+};
+
+export const authenticateSignUp = (firstName, lastName, password, email, shippingAddress, method) => async (dispatch) => {
+	console.log("this is the data", firstName, lastName, email)
+	try {
+		const res = await axios.post(`/auth/${method}`, { firstName, lastName, password, email, shippingAddress});
 		window.localStorage.setItem(TOKEN, res.data.token);
 		dispatch(me());
 	} catch (authError) {
