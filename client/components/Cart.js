@@ -11,7 +11,6 @@ class Cart extends React.Component {
 	}
 
 	componentDidMount() {
-		// console.log("param.id", this.props.match.params.userId);
 		this.props.getProducts();
 		this.props.getCart(this.props.match.params.userId);
 		this.setState({ cart: this.props.cart });
@@ -20,15 +19,11 @@ class Cart extends React.Component {
 	async changeQty(item, value) {
 		const updatedItem = item;
 		updatedItem.quantity = Number(value);
-		// console.log("updatedItem", updatedItem);
-		await this.setState({ item: updatedItem });
+		 this.setState({ item: updatedItem });
 
-		this.props.changeQty(this.props.match.params.userId, this.state.item);
+		await this.props.changeQty(this.props.match.params.userId, this.state.item);
 	}
 	render() {
-		console.log("props", this.props);
-		console.log("this.state", this.state);
-
 		const cart = this.props.cart;
 		const products = this.props.products;
 		let quantity = 0;
@@ -51,7 +46,6 @@ class Cart extends React.Component {
 										)[0].name
 									)}
 								</div>
-								{/* <div>{product.name}</div> */}
 								{
 									(quantity = products.filter(
 										(product) => product.id === item.productId
@@ -97,7 +91,6 @@ class Cart extends React.Component {
 	}
 }
 const mapState = (state) => {
-	console.log("state", state);
 	return {
 		cart: state.cart,
 		products: state.allProducts,

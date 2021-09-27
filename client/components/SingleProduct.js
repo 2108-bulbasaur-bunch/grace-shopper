@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct, updateProductThunk } from "../store/oneProduct";
+import {addItemThunk} from '../store/cart'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
@@ -37,6 +38,7 @@ const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
     updateProduct: (product) => dispatch(updateProductThunk(product)),
+    addItem: (item)=> dispatch(addItemThunk)
   };
 };
 
