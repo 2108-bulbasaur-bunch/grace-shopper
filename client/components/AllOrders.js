@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {fetchAllOrders} from "../store/adminOrders"
+import {me} from "../store/auth"
 
 class AllOrders extends React.Component {
 	constructor(props) {
@@ -8,6 +9,7 @@ class AllOrders extends React.Component {
 	}
 
 	componentDidMount() {
+    this.props.me();
 		this.props.getOrders();
 	}
 
@@ -31,12 +33,13 @@ class AllOrders extends React.Component {
 }
 const mapState = (state) => {
 	return {
-		orders: state.orders,
+		orders: state.adminOrders,
 	};
 };
 
 const mapDispatch = (dispatch) => {
 	return {
+    me: () => dispatch(me()),
 		getOrders: () => dispatch(fetchAllOrders()),
 	};
 };

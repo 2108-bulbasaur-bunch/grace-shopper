@@ -2,6 +2,7 @@ import axios from "axios";
 
 //action types
 const SET_ORDERS = "SET_ORDERS";
+const TOKEN = "token";
 
 //action creator
 const setAllOrders = (orders) => {
@@ -12,15 +13,21 @@ const setAllOrders = (orders) => {
 };
 
 //thunk
-export const fetchAllOrders = () => {
-  return async (dispatch) => {
+//YOU MUST HAVE TOKEN AUTH ANYTIME YOU HAVE AN AXIOS CALL TO AN API THAT REQUIRES LOGIN!
+export const fetchAllOrders = () => async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/orders/");
-      dispatch(setAllOrders(data));
-    } catch (err) {
-      console.log(err);
+      const token = window.localStorage.getItem(TOKEN);
+      if (token) {
+        const res = await axios.get("/api/orders/", {
+          headers: {
+            authorization: token,
+          },
+        });
+      dispatch(setAllOrders(res.data));
     }
-  };
+     } catch (err) {
+    console.log(err);
+  }
 };
 
 //reducer
