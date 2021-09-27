@@ -47,7 +47,7 @@ export const addItemThunk = (userId, body, history) => {
 		try {
 			const { data } = await axios.post(`/api/orders/cart/${userId}`, body);
 			dispatch(add_item(data));
-			history.push("/");
+			// history.push("/");
 		} catch (error) {
 			console.log(error);
 		}
@@ -64,7 +64,7 @@ export const deleteItemThunk = (userId, body, history) => {
 				data: body,
 			});
 			dispatch(delete_item(data));
-			history.push("/");
+			// history.push("/");
 		} catch (error) {
 			console.log(error);
 		}
@@ -76,7 +76,7 @@ export const updateQtyThunk = (userId, body, history) => {
 		try {
 			const { data } = await axios.put(`/api/orders/cart/${userId}`, body);
 			dispatch(update_qty(data));
-			history.push(`/orders/cart/${userId}`);
+			// history.push(`/orders/cart/${userId}`);
 		} catch (error) {
 			console.log(error);
 		}
