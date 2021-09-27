@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { authenticate } from "../store";
+import { authenticateSignUp } from "../store";
 
-//FORM IS CREATED, BUT IT DOES NOT WORK. WHEN SUBMIT IS HIT, IT GIVES A BAD TOKEN ERROR.
+//SIGN UP FORM IS WORKING, BUT THOSE NEW USERS CAN'T SEE THEIR PROFILE FOR SOME REASON
 
 const SignUpForm = (props) => {
 	const { name, displayName, handleSubmit, error } = props;
@@ -62,12 +62,13 @@ const mapDispatch = (dispatch) => {
 		handleSubmit(evt) {
 			evt.preventDefault();
 			const formName = evt.target.name;
+      console.log("this is the formName", formName)
       const firstName = evt.target.firstName.value;
       const lastName = evt.target.lastName.value;
       const password = evt.target.password.value;
 			const email = evt.target.email.value;
       const shippingAddress = evt.target.shippingAddress.value;
-			dispatch(authenticate(firstName, lastName, password,email, shippingAddress, formName));
+			dispatch(authenticateSignUp(firstName, lastName, password,email, shippingAddress, formName));
 		},
 	};
 };

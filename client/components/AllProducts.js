@@ -22,12 +22,12 @@ class AllProducts extends React.Component {
       return (
         <div className="all-products">
           {products.map((product) => (
-            <div key={product.id}>
+            <div key={product.id} className="indiv-product">
               <Link to={`/products/${product.id}`} >
                 <img src={product.imageUrl} width="250" height="250" />
                 <h3>{product.name}</h3>
               </Link>
-                <h5>{product.price}</h5>
+                <h5>{product.price / 100}</h5>
                 <form>
                   {/* <label>Quantity: <input type="text"/> </label>*/}
                   <button type="submit">Add to Cart</button>

@@ -21,7 +21,8 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 });
 
 //GET single user
-router.get("/:userId", isLoggedIn, isAdmin, async (req, res, next) => {
+// isAdmin || isSameUser
+router.get("/:userId", isLoggedIn, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.userId)
 		res.send(user);

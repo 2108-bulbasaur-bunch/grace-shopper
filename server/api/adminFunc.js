@@ -21,6 +21,15 @@ const isAdmin = (req, res, next) => {
 	}
 };
 
+//isSameUser
+
+
+
+//isSameUserOrAdmin -- just for the user detail view scenario(or if ever you needed an admin and the same user to see something)
+
+
+
+
 module.exports = {
 	isLoggedIn,
 	isAdmin,
