@@ -145,9 +145,11 @@ router.put("/cart/:userId", async (req, res, next) => {
 				completed: false,
 			},
 		});
+
 		const product = await Item.findOne({
 			where: {
 				productId: req.body.productId,
+				orderId: userOrder.id,
 			},
 		});
 		res.send(await product.update({ quantity: req.body.quantity }));
@@ -170,6 +172,7 @@ router.delete("/cart/:userId", async (req, res, next) => {
 		const product = await Item.findOne({
 			where: {
 				productId: req.body.productId,
+				orderId: userOrder.id,
 			},
 		});
 		await product.destroy();
