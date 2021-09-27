@@ -9,7 +9,7 @@ const { isLoggedIn, isAdmin } = require("./adminFunc");
 // GET all orders
 // api/orders
 //NOTE: RIGHT NOW, THIS IS NOT SECURE. WHEN THESE ARE ADDED, WE GET A BAD TOKEN ERROR, EVEN THOUGH WE DON'T GET THAT ERROR WITH USERS AND PRODUCTS: isLoggedIn, isAdmin,
-router.get("/", async (req, res, next) => {
+router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 	try {
 		const allOrders = await Order.findAll();
 		res.json(allOrders);
@@ -36,7 +36,7 @@ router.get("/", async (req, res, next) => {
 // 	}
 // });
 
-router.get("/:userId", async (req, res, next) => {
+router.get("/:userId", isLoggedIn, async (req, res, next) => {
 	try {
 		const userOrders = await Order.findAll({
 			where: {
