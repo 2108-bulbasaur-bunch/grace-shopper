@@ -10,7 +10,7 @@ export const Home = (props) => {
 
 	return (
 		<div>
-			<h3>Welcome, {firstName}</h3>
+			<h3>Our Current Stock</h3>
 			<AllProducts />
 		</div>
 

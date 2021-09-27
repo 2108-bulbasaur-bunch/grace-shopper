@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, userId }) => (
 	<div>
 		<h1>Bulbasaur's Bake Shop</h1>
 		<nav>
@@ -11,9 +11,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 				<div>
 					{/* The navbar will show these links after you log in */}
 					<Link to="/">Home</Link>
-					{/* The below is currently broken; have to figure out how to pull in userId from props to get user profile and cart */}
-					<Link to="/users/">Your Profile</Link>
-					<Link to="/orders/cart">Your Cart</Link>
+					<Link to={`/users/${userId}`}>Your Profile</Link>
+					<Link to={`/orders/cart/${userId}`}>Your Cart</Link>
 					<a href="#" onClick={handleClick}>
 						Logout
 					</a>
@@ -24,6 +23,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 					<Link to="/">Home</Link>
 					<Link to="/login">Login</Link>
 					<Link to="/signup">Sign Up</Link>
+					{/*THE BELOW NEEDS TO BE ADJUSTED FOR GUEST STILL*/}
 					<Link to="/orders/cart">Your Cart</Link>
 				</div>
 			)}
@@ -38,6 +38,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = (state) => {
 	return {
 		isLoggedIn: !!state.auth.id,
+		userId: state.auth.id
 	};
 };
 
