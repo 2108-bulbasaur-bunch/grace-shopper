@@ -119,11 +119,17 @@ export default function cartReducer(state = [], action) {
 		case GET_CART:
 			return action.cart;
 		case ADD_ITEM:
-			return action.item;
-		case DELETE_ITEM:
-			return state.filter((item) => item.productId !== action.item.productId);
+			return [...state, ...action.item];
 		case UPDATE_QTY:
-			return [...state, state.action];
+			const stateCopy = state.map((item) => {
+				if (item.id === action.item.id) {
+					item = action.item
+				}
+				return item
+			})
+			return stateCopy
+			case DELETE_ITEM:
+			return state.filter((item) => item.productId !== action.item.productId);
 		default:
 			return state;
 	}

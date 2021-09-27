@@ -6,23 +6,21 @@ import { fetchProducts } from "../store/products";
 class Cart extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { cart: [], item: {} };
 		this.changeQty = this.changeQty.bind(this);
 	}
 
 	componentDidMount() {
 		this.props.getProducts();
 		this.props.getCart(this.props.match.params.userId);
-		this.setState({ cart: this.props.cart });
 	}
 
 	async changeQty(item, value) {
 		const updatedItem = item;
 		updatedItem.quantity = Number(value);
-		 this.setState({ item: updatedItem });
 
-		await this.props.changeQty(this.props.match.params.userId, this.state.item);
+		await this.props.changeQty(this.props.match.params.userId, updatedItem);
 	}
+
 	render() {
 		const cart = this.props.cart;
 		const products = this.props.products;
@@ -44,7 +42,8 @@ class Cart extends React.Component {
 										products.filter(
 											(product) => product.id === item.productId
 										)[0].name
-									)}
+									)
+									}
 								</div>
 								{
 									(quantity = products.filter(
