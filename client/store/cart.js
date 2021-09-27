@@ -6,6 +6,7 @@ const ADD_ITEM = "ADD_ITEM";
 const DELETE_ITEM = "DELETE_ITEM";
 const UPDATE_QTY = "UPDATE_QTY";
 const CHECKOUT = "CHECKOUT";
+const TOKEN = "token";
 
 //action creator
 const get_cart = (cart) => {
@@ -97,8 +98,15 @@ export const checkoutThunk = (userId) => {
 export const fetchCartThunk = (userId) => {
 	return async (dispatch) => {
 		try {
-			const { data } = await axios.get(`/api/orders/cart/${userId}`);
-			dispatch(get_cart(data));
+			const token = window.localStorage.getItem(TOKEN);
+      if (token) {
+				const { data } = await axios.get(`/api/orders/cart/${userId}`, {
+					headers: {
+						authorization: token,
+					}
+				});
+				dispatch(get_cart(data));
+			}
 		} catch (error) {
 			console.log(error);
 		}

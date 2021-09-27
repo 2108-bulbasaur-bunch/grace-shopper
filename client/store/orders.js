@@ -3,6 +3,7 @@ import axios from "axios";
 //action type
 const SET_ORDER_HISTORY = "SET_ORDER_HISTORY";
 const CREATE_CART = "CREATE_CART";
+const TOKEN = "token";
 
 //action creator
 const set_order_history = (orders) => {
@@ -25,8 +26,15 @@ const create_cart = (order) => {
 export const fetchOrderHistory = (userId) => {
 	return async (dispatch) => {
 		try {
-			const { data } = await axios.get(`/api/orders/${userId}`);
-			dispatch(set_order_history(data));
+			const token = window.localStorage.getItem(TOKEN);
+      if (token) {
+				const { data } = await axios.get(`/api/orders/${userId}`, {
+					headers: {
+            authorization: token,
+          }
+				});
+				dispatch(set_order_history(data));
+			}
 		} catch (error) {
 			console.log(error);
 		}

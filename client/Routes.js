@@ -10,6 +10,7 @@ import AllProducts from "./components/AllProducts";
 import SingleProduct from "./components/SingleProduct";
 import OrderHistory from "./components/OrderHistory";
 import Cart from "./components/Cart";
+import AllOrders from "./components/AllOrders";
 
 /**
  * COMPONENT
@@ -33,6 +34,7 @@ class Routes extends Component {
 
 						<Route exact path="/products" component={AllProducts} />
 						<Route path="/products/:productId" component={SingleProduct} />
+						<Route exact path="/orders/" component={AllOrders} />
 						<Route path="/orders/cart/:userId" component={Cart} />
 						<Route path="/orders/:userId" component={OrderHistory} />
 					</Switch>
