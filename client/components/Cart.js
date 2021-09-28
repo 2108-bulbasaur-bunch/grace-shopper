@@ -10,6 +10,7 @@ class Cart extends React.Component {
 	}
 
 	componentDidMount() {
+        console.log('componentDidMout')
 		this.props.getProducts();
 		this.props.getCart(this.props.match.params.userId);
 	}
@@ -17,7 +18,7 @@ class Cart extends React.Component {
 	async changeQty(item, value) {
 		const updatedItem = item;
 		updatedItem.quantity = Number(value);
-
+        console.log('updateItem',updatedItem)
 		await this.props.changeQty(this.props.match.params.userId, updatedItem);
 	}
 
@@ -25,7 +26,7 @@ class Cart extends React.Component {
 		const cart = this.props.cart;
 		const products = this.props.products;
 		let quantity = 0;
-
+console.log('cart',cart)
 		return (
 			<div>
 				<h2>Cart</h2>
@@ -45,6 +46,7 @@ class Cart extends React.Component {
 									)
 									}
 								</div>
+                    
 								{
 									(quantity = products.filter(
 										(product) => product.id === item.productId
@@ -52,6 +54,7 @@ class Cart extends React.Component {
 								}
 								<div>
 									<select
+                                    
 										onChange={(event) =>
 											this.changeQty(item, event.target.value)
 										}
@@ -66,6 +69,9 @@ class Cart extends React.Component {
 												</option>
 											);
 										})}
+                                        {/* <option selected={'1' == item.quantity ? true : false} value='1'>1</option>
+                                        <option selected={'2'== item.quantity ? true : false} value='2'>2</option>
+                                        <option selected={'35'== item.quantity ? true : false} value='35'>35</option> */}
 									</select>
 								</div>
 								<div>purchasePrice: ${item.purchasePrice}</div>
