@@ -2,7 +2,7 @@ const router = require("express").Router();
 const {
 	models: { User },
 } = require("../db");
-const { isLoggedIn, isAdmin } = require("./adminFunc");
+const { isLoggedIn, isAdmin, isSameUser, isSameUserOrAdmin } = require("./adminFunc");
 
 //Get: user listing page for admin only
 //+  need to check if it is admin first
@@ -21,8 +21,7 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 });
 
 //GET single user
-// isAdmin || isSameUser
-router.get("/:userId", isLoggedIn, async (req, res, next) => {
+router.get("/:userId", isLoggedIn, isSameUserOrAdmin, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.userId)
 		res.send(user);

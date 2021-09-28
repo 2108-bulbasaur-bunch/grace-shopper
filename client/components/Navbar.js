@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logout } from "../store";
+import SingleUser from "./SingleUser";
 
 const Navbar = ({ handleClick, isLoggedIn, userId }) => (
 	<div>
@@ -11,6 +12,7 @@ const Navbar = ({ handleClick, isLoggedIn, userId }) => (
 				<div>
 					{/* The navbar will show these links after you log in */}
 					<Link to="/">Home</Link>
+					{/* the below isn't working because you have to make sure that the get single user is still being called*/}
 					<Link to={`/users/${userId}`}>Your Profile</Link>
 					<Link to={`/orders/cart/${userId}`}>Your Cart</Link>
 					<a href="#" onClick={handleClick}>
