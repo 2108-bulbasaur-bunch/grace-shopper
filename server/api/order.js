@@ -4,7 +4,7 @@ const {
 } = require("../db");
 const Product = require("../db/models/Product");
 
-const { isLoggedIn, isAdmin, isSameUserOrAdmin } = require("./adminFunc");
+const { isLoggedIn, isAdmin, isSameUserOrAdmin, isSameUser } = require("./adminFunc");
 
 // GET all orders
 // api/orders
@@ -20,16 +20,10 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 // GET one user's order history - complete: true
 // api/orders/userId
 //Needs to have "isLoggedIn" to technically be secure, but don't want the bad token issue to delay dev:  isLoggedIn,
-<<<<<<< HEAD
-// router.get("/:userId", async (req, res, next) => {
-// 	try {
-// 		const userOrders = await Order.findOne({
-=======
 //Removed "true" so it shows everything
 // router.get("/:userId", async (req, res, next) => {
 // 	try {
 // 		const userOrders = await Order.findAll({
->>>>>>> 7f628c6f95063572919f12757884b1a2a19bbd96
 // 			where: {
 // 				userId: req.params.userId,
 // 				completed: true,
@@ -62,7 +56,7 @@ router.get("/:userId", isLoggedIn, isSameUserOrAdmin, async (req, res, next) => 
 
 // GET current cart - incomplete order
 // api/orders/cart/userId/
-router.get("/cart/:userId", isLoggedIn, async (req, res, next) => {
+router.get("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
   try {
     const order = await Order.findOne({
       where: {
@@ -85,7 +79,7 @@ router.get("/cart/:userId", isLoggedIn, async (req, res, next) => {
 // PUT checkout cart - change to completed
 // api/orders/cart/userId/
 
-router.put("/:userId", async (req, res, next) => {
+router.put("/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
       where: {
@@ -130,7 +124,7 @@ router.put("/:userId", async (req, res, next) => {
 
 // POST add items to cart
 // api/orders/cart/userId
-router.post("/cart/:userId", async (req, res, next) => {
+router.post("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
   try {
     let userOrder = await Order.findOne({
       where: {
@@ -138,7 +132,6 @@ router.post("/cart/:userId", async (req, res, next) => {
         completed: false,
       },
     });
-   console.log('userOrder-before',userOrder)
     if (!userOrder) {
       userOrder = await Order.create({
         completed: false,
@@ -146,7 +139,6 @@ router.post("/cart/:userId", async (req, res, next) => {
         userId: req.params.userId,
       });
     }
-       console.log('userOrder-after',userOrder)
 
 		//for loop
 		const items = []
@@ -172,8 +164,9 @@ router.post("/cart/:userId", async (req, res, next) => {
 
 // PUT edit quantity of an item in cart
 // api/orders/cart/userId
+//SECURITY NOT WORKING -- Even with token added to Update Qty Thunk
 
-router.put("/cart/:userId", async (req, res, next) => {
+router.put("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
       where: {
@@ -202,7 +195,7 @@ router.put("/cart/:userId", async (req, res, next) => {
 // DELETE remove item from cart
 // api/orders/cart/userId
 
-router.delete("/cart/:userId", async (req, res, next) => {
+router.delete("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
       where: {
