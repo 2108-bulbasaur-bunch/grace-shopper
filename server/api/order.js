@@ -20,20 +20,19 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 // GET one user's order history - complete: true
 // api/orders/userId
 //Needs to have "isLoggedIn" to technically be secure, but don't want the bad token issue to delay dev:  isLoggedIn,
-//Removed "true" so it shows everything
-// router.get("/:userId", async (req, res, next) => {
-// 	try {
-// 		const userOrders = await Order.findAll({
-// 			where: {
-// 				userId: req.params.userId,
-// 				completed: true,
-// 			},
-// 		});
-// 		res.send(userOrders);
-// 	} catch (error) {
-// 		next(error);
-// 	}
-// });
+router.get("/:userId", async (req, res, next) => {
+	try {
+		const userOrders = await Order.findOne({
+			where: {
+				userId: req.params.userId,
+				completed: true,
+			},
+		});
+		res.send(userOrders);
+	} catch (error) {
+		next(error);
+	}
+});
 
 router.get("/:userId", isLoggedIn, async (req, res, next) => {
   try {
