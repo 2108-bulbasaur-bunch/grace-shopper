@@ -44,6 +44,7 @@ const checkout = (order) => {
 
 //thunk creator
 export const addItemThunk = (userId, body) => {
+	console.log('userId, body',userId, body)
 	return async (dispatch) => {
 		try {
 			const { data } = await axios.post(`/api/orders/cart/${userId}`, body);
