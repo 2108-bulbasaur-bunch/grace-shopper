@@ -26,7 +26,7 @@ class Cart extends React.Component {
 		const cart = this.props.cart;
 		const products = this.props.products;
 		let quantity = 0;
-console.log('cart',cart)
+// console.log('cart',cart)
 		return (
 			<div>
 				<h2>Cart</h2>

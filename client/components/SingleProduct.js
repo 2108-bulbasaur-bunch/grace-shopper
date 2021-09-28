@@ -8,8 +8,6 @@ class SingleProduct extends React.Component {
   constructor(props) {
     super(props);
   this.state={value:1}
-    this.cart=[]
-    this.userId=''
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,26 +20,19 @@ class SingleProduct extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
+
     try {
-    let cartItem={};
-    if(this.props.cart[0]){
-cartItem.quantity=this.state.value;
-    cartItem.purchasePrice=this.props.product.price;
-    cartItem.orderId=this.props.cart[0].orderId;
-    cartItem.productId=await this.props.product.id;
-    }else{
-      cartItem.quantity=this.state.value;
-    cartItem.purchasePrice=this.props.product.price;
-    cartItem.orderId=100
-    cartItem.productId=await this.props.product.id;
-    }
+      let cartItem={};
+          cartItem.quantity=this.state.value;
+          cartItem.purchasePrice=this.props.product.price;
+          cartItem.orderId=100
+          cartItem.productId=await this.props.product.id;
     
-   
-    await this.props.addItem(this.props.user.id,cartItem)
-    } catch (error) {
-      console.log(error);
+      await this.props.addItem(this.props.user.id,cartItem)
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
 
   async handleChange(event) {
     await this.setState({value: event.target.value});
@@ -60,12 +51,18 @@ cartItem.quantity=this.state.value;
         <p>Quantity Left: {product.quantity}</p>
 
         <form onSubmit={this.handleSubmit}>
-          <select onChange={this.handleChange} >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+        <select onChange={this.handleChange}>
+            {Array.from(Array(product.quantity), (e, i) => {
+              return (
+                <option
+                  value={i + 1}
+                >
+                  {i + 1}
+                </option>
+              );
+            })}
+        </select>
+          
           <input type="submit" value="add to cart" />
         </form>
       </div>
@@ -77,7 +74,6 @@ const mapState = (state) => {
   return {
     product: state.singleProduct,
     user:state.auth,
-    cart:state.cart
   };
 };
 
@@ -86,7 +82,6 @@ const mapDispatch = (dispatch) => {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
     updateProduct: (product) => dispatch(updateProductThunk(product)),
     addItem: (userId, item) => dispatch(addItemThunk(userId, [item])),
-    getCart: (userId) => dispatch(fetchCartThunk(userId))
   };
 };
 
