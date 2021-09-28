@@ -43,7 +43,7 @@ const checkout = (order) => {
 };
 
 //thunk creator
-export const addItemThunk = (userId, body, history) => {
+export const addItemThunk = (userId, body) => {
 	return async (dispatch) => {
 		try {
 			const { data } = await axios.post(`/api/orders/cart/${userId}`, body);
@@ -105,6 +105,7 @@ export const fetchCartThunk = (userId) => {
 						authorization: token,
 					}
 				});
+				
 				dispatch(get_cart(data));
 			}
 		} catch (error) {
@@ -122,10 +123,12 @@ export default function cartReducer(state = [], action) {
 			return [...state, ...action.item];
 		case UPDATE_QTY:
 			const stateCopy = state.map((item) => {
-				if (item.id === action.item.id) {
+				if (item.productId === action.item.productId) {
 					item = action.item
-				}
-				return item
+				return action.item
+
+				}else{return item}
+				
 			})
 			return stateCopy
 			case DELETE_ITEM:
