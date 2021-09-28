@@ -44,11 +44,17 @@ const checkout = (order) => {
 
 //thunk creator
 export const addItemThunk = (userId, body) => {
-	console.log('userId, body',userId, body)
 	return async (dispatch) => {
 		try {
-			const { data } = await axios.post(`/api/orders/cart/${userId}`, body);
-			dispatch(add_item(data));
+			const token = window.localStorage.getItem(TOKEN);
+			if (token) {
+				const { data } = await axios.post(`/api/orders/cart/${userId}`, body, {
+					headers:{
+						authorization: token,
+					}
+				});
+				dispatch(add_item(data));
+			}
 			// history.push("/");
 		} catch (error) {
 			console.log(error);
@@ -59,13 +65,18 @@ export const addItemThunk = (userId, body) => {
 export const deleteItemThunk = (userId, body, history) => {
 	return async (dispatch) => {
 		try {
-			const { data } = await axios.delete(`/api/orders/cart/${userId}`, {
-				headers: {
-					"Content-Type": "application/json",
-				},
-				data: body,
-			});
-			dispatch(delete_item(data));
+			const token = window.localStorage.getItem(TOKEN);
+			if (token) {
+				const { data } = await axios.delete(`/api/orders/cart/${userId}`, {
+					headers: {
+						"Content-Type": "application/json",
+						authorization: token
+					},
+					data: body,
+				});
+				dispatch(delete_item(data));
+			}
+
 			// history.push("/");
 		} catch (error) {
 			console.log(error);
@@ -76,8 +87,13 @@ export const deleteItemThunk = (userId, body, history) => {
 export const updateQtyThunk = (userId, body, history) => {
 	return async (dispatch) => {
 		try {
-			const { data } = await axios.put(`/api/orders/cart/${userId}`, body);
-			dispatch(update_qty(data));
+			const token = window.localStorage.getItem(TOKEN);
+			if (token) {
+				const { data } = await axios.put(`/api/orders/cart/${userId}`, body,{headers: {
+					authorization: token
+				}} );
+				dispatch(update_qty(data));
+			}
 			// history.push(`/orders/cart/${userId}`);
 		} catch (error) {
 			console.log(error);

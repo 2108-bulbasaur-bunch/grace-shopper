@@ -4,7 +4,12 @@ const {
 } = require("../db");
 const Product = require("../db/models/Product");
 
-const { isLoggedIn, isAdmin } = require("./adminFunc");
+const {
+	isLoggedIn,
+	isAdmin,
+	isSameUserOrAdmin,
+	isSameUser,
+} = require("./adminFunc");
 
 // GET all orders
 // api/orders
@@ -35,32 +40,35 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 // 	}
 // });
 
-//GET MOST RECENT ORDER
-router.get("/:userId", isLoggedIn, async (req, res, next) => {
-	try {
-		const userOrders = await Order.findAll({
-			where: {
-				userId: req.params.userId,
-				completed: true,
-			},
-			include: [
-				{
-					model: Product,
+router.get(
+	"/:userId",
+	isLoggedIn,
+	isSameUserOrAdmin,
+	async (req, res, next) => {
+		try {
+			const userOrders = await Order.findAll({
+				where: {
+					userId: req.params.userId,
+					completed: true,
 				},
-			],
-		});
-
-		res.send(userOrders);
-	} catch (error) {
-		next(error);
+				include: [
+					{
+						model: Product,
+					},
+				],
+			});
+			res.send(userOrders);
+		} catch (error) {
+			next(error);
+		}
 	}
-});
+);
 
 // CUSTOMERS
 
 // GET current cart - incomplete order
 // api/orders/cart/userId/
-router.get("/cart/:userId", async (req, res, next) => {
+router.get("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 	try {
 		const order = await Order.findOne({
 			where: {
@@ -82,7 +90,7 @@ router.get("/cart/:userId", async (req, res, next) => {
 // PUT checkout cart - change to completed
 // api/orders/cart/userId/
 
-router.put("/:userId", async (req, res, next) => {
+router.put("/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 	try {
 		const userOrder = await Order.findOne({
 			where: {
@@ -128,7 +136,7 @@ router.put("/:userId", async (req, res, next) => {
 
 // POST add items to cart
 // api/orders/cart/userId
-router.post("/cart/:userId", async (req, res, next) => {
+router.post("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 	try {
 		let userOrder = await Order.findOne({
 			where: {
@@ -136,7 +144,6 @@ router.post("/cart/:userId", async (req, res, next) => {
 				completed: false,
 			},
 		});
-		console.log("userOrder-before", userOrder);
 		if (!userOrder) {
 			userOrder = await Order.create({
 				completed: false,
@@ -144,7 +151,6 @@ router.post("/cart/:userId", async (req, res, next) => {
 				userId: req.params.userId,
 			});
 		}
-		console.log("userOrder-after", userOrder);
 
 		//for loop
 		const items = [];
@@ -172,8 +178,9 @@ router.post("/cart/:userId", async (req, res, next) => {
 
 // PUT edit quantity of an item in cart
 // api/orders/cart/userId
+//SECURITY NOT WORKING -- Even with token added to Update Qty Thunk
 
-router.put("/cart/:userId", async (req, res, next) => {
+router.put("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 	try {
 		const userOrder = await Order.findOne({
 			where: {
@@ -202,25 +209,30 @@ router.put("/cart/:userId", async (req, res, next) => {
 // DELETE remove item from cart
 // api/orders/cart/userId
 
-router.delete("/cart/:userId", async (req, res, next) => {
-	try {
-		const userOrder = await Order.findOne({
-			where: {
-				userId: req.params.userId,
-				completed: false,
-			},
-		});
-		const product = await Item.findOne({
-			where: {
-				productId: req.body.productId,
-				orderId: userOrder.id,
-			},
-		});
-		await product.destroy();
-		res.send(product);
-	} catch (err) {
-		next(err);
+router.delete(
+	"/cart/:userId",
+	isLoggedIn,
+	isSameUser,
+	async (req, res, next) => {
+		try {
+			const userOrder = await Order.findOne({
+				where: {
+					userId: req.params.userId,
+					completed: false,
+				},
+			});
+			const product = await Item.findOne({
+				where: {
+					productId: req.body.productId,
+					orderId: userOrder.id,
+				},
+			});
+			await product.destroy();
+			res.send(product);
+		} catch (err) {
+			next(err);
+		}
 	}
-});
+);
 
 module.exports = router;
