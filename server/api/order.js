@@ -21,20 +21,22 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 // api/orders/userId
 //Needs to have "isLoggedIn" to technically be secure, but don't want the bad token issue to delay dev:  isLoggedIn,
 //Removed "true" so it shows everything
-router.get("/:userId", async (req, res, next) => {
-	try {
-		const userOrders = await Order.findAll({
-			where: {
-				userId: req.params.userId,
-				completed: true,
-			},
-		});
-		res.send(userOrders);
-	} catch (error) {
-		next(error);
-	}
-});
+// router.get("/:userId", async (req, res, next) => {
+// 	try {
+// 		const userOrders = await Order.findAll({
+// 			where: {
+// 				userId: req.params.userId,
+// 				completed: true,
+// 			},
+// 		});
+// 		res.send(userOrders);
+// 	} catch (error) {
+// 		next(error);
+// 	}
+// });
 
+
+//GET MOST RECENT ORDER
 router.get("/:userId", isLoggedIn, async (req, res, next) => {
   try {
     const userOrders = await Order.findAll({
@@ -42,6 +44,9 @@ router.get("/:userId", isLoggedIn, async (req, res, next) => {
         userId: req.params.userId,
         completed: true,
       },
+      include: [{
+        model: Product
+      }]
     });
 
     res.send(userOrders);
