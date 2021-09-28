@@ -18,30 +18,26 @@ class SingleProduct extends React.Component {
     const productId = this.props.match.params.productId;
     this.props.getSingleProduct(productId);
     
-    const userId=await this.props.user.id
-
-    this.cart= await this.props.getCart(4)
-  
-    
-    console.log('props',this.props)
-    console.log('cart',this.props.cart)
   }
 
   async handleSubmit(event) {
     event.preventDefault();
-    
+    try {
     let cartItem={};
-    cartItem.quantity=this.state.value;
+    if(this.props.cart[0]){
+cartItem.quantity=this.state.value;
     cartItem.purchasePrice=this.props.product.price;
     cartItem.orderId=this.props.cart[0].orderId;
     cartItem.productId=await this.props.product.id;
-    // console.log('cartItem',cartItem)
-    // console.log('this.props.user.id',this.props.user.id)
-    await this.props.addItem(this.props.user.id,cartItem)
+    }else{
+      cartItem.quantity=this.state.value;
+    cartItem.purchasePrice=this.props.product.price;
+    cartItem.orderId=100
+    cartItem.productId=await this.props.product.id;
+    }
     
-    event.preventDefault();
-    try {
-       this.props.addItem(this.state);
+   
+    await this.props.addItem(this.props.user.id,cartItem)
     } catch (error) {
       console.log(error);
     }
@@ -55,10 +51,11 @@ class SingleProduct extends React.Component {
     const { product } = this.props;
 
     return (
+      
       <div key={product.id}>
         <img src={product.imageUrl} width="250" height="250" />
         <h3>{product.name}</h3>
-        <h5>{product.price}</h5>
+        <h5>{product.price/100}</h5>
         <p>{product.description}</p>
         <p>Quantity Left: {product.quantity}</p>
 

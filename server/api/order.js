@@ -120,7 +120,7 @@ router.post("/cart/:userId", async (req, res, next) => {
         completed: false,
       },
     });
-
+   console.log('userOrder-before',userOrder)
     if (!userOrder) {
       userOrder = await Order.create({
         completed: false,
@@ -128,6 +128,8 @@ router.post("/cart/:userId", async (req, res, next) => {
         userId: req.params.userId,
       });
     }
+       console.log('userOrder-after',userOrder)
+
 		//for loop
 		const items = []
 		req.body.forEach(async element => {

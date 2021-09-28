@@ -44,7 +44,6 @@ const checkout = (order) => {
 
 //thunk creator
 export const addItemThunk = (userId, body) => {
-    console.log('userId, body',userId, body)
 	return async (dispatch) => {
 		try {
 			const { data } = await axios.post(`/api/orders/cart/${userId}`, body);
@@ -74,11 +73,9 @@ export const deleteItemThunk = (userId, body, history) => {
 };
 
 export const updateQtyThunk = (userId, body, history) => {
-	console.log('userId, body',userId, body)
 	return async (dispatch) => {
 		try {
 			const { data } = await axios.put(`/api/orders/cart/${userId}`, body);
-			console.log('data',data)
 			dispatch(update_qty(data));
 			// history.push(`/orders/cart/${userId}`);
 		} catch (error) {
@@ -103,7 +100,6 @@ export const fetchCartThunk = (userId) => {
 		try {
 			const token = window.localStorage.getItem(TOKEN);
       if (token) {
-		  console.log('token!',token)
 				const { data } = await axios.get(`/api/orders/cart/${userId}`, {
 					headers: {
 						authorization: token,

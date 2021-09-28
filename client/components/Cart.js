@@ -47,12 +47,15 @@ console.log('cart',cart)
 									}
 								</div>
                     
-								{
+								
+								<div>
+                                <div>in stock:</div>
+                                {
 									(quantity = products.filter(
 										(product) => product.id === item.productId
 									)[0].quantity)
 								}
-								<div>
+                               
 									<select
                                     
 										onChange={(event) =>
@@ -73,8 +76,9 @@ console.log('cart',cart)
                                         <option selected={'2'== item.quantity ? true : false} value='2'>2</option>
                                         <option selected={'35'== item.quantity ? true : false} value='35'>35</option> */}
 									</select>
+                                   
 								</div>
-								<div>purchasePrice: ${item.purchasePrice}</div>
+								<div>purchasePrice: ${item.purchasePrice/100}</div>
 								<button
 									type="button"
 									onClick={() =>
