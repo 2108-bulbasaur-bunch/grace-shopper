@@ -20,9 +20,16 @@ router.get("/", isLoggedIn, isAdmin, async (req, res, next) => {
 // GET one user's order history - complete: true
 // api/orders/userId
 //Needs to have "isLoggedIn" to technically be secure, but don't want the bad token issue to delay dev:  isLoggedIn,
+<<<<<<< HEAD
 // router.get("/:userId", async (req, res, next) => {
 // 	try {
 // 		const userOrders = await Order.findOne({
+=======
+//Removed "true" so it shows everything
+// router.get("/:userId", async (req, res, next) => {
+// 	try {
+// 		const userOrders = await Order.findAll({
+>>>>>>> 7f628c6f95063572919f12757884b1a2a19bbd96
 // 			where: {
 // 				userId: req.params.userId,
 // 				completed: true,
@@ -74,8 +81,9 @@ router.get("/cart/:userId", isLoggedIn, async (req, res, next) => {
   }
 });
 
+
 // PUT checkout cart - change to completed
-// api/orders/userId/
+// api/orders/cart/userId/
 
 router.put("/:userId", async (req, res, next) => {
   try {
@@ -85,7 +93,15 @@ router.put("/:userId", async (req, res, next) => {
         completed: false,
       },
     });
-    res.send(await userOrder.update({ completed: true }));
+		// let date = new Date(Date.now())
+		// await userOrder.update({
+		// 	completed: true,
+		// 	// purchaseDate: date
+		// })
+		// await userOrder.save();
+    res.send(await userOrder.update({
+			completed: true,
+		}));
   } catch (error) {
     next(error);
   }
@@ -110,6 +126,7 @@ router.put("/:userId", async (req, res, next) => {
 // GET order details of previous order - also confirmation page
 // api/orders/history/userId
 //INSTEAD OF ROUTE, USE LOCAL STATE/PROPS TO PASS CART INFORMATION TO THE CONFIRMATION PAGE
+
 
 // POST add items to cart
 // api/orders/cart/userId

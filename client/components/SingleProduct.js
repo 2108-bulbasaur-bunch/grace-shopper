@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct, updateProductThunk } from "../store/oneProduct";
-import { addItemThunk, fetchCartThunk} from "../store/cart";
-
+import { addItemThunk, fetchCartThunk } from "../store/cart";
 
 class SingleProduct extends React.Component {
   constructor(props) {
@@ -15,7 +14,6 @@ class SingleProduct extends React.Component {
   async componentDidMount() {
     const productId = this.props.match.params.productId;
     this.props.getSingleProduct(productId);
-    
   }
 
   async handleSubmit(event) {
@@ -27,7 +25,7 @@ class SingleProduct extends React.Component {
           cartItem.purchasePrice=this.props.product.price;
           cartItem.orderId=100
           cartItem.productId=await this.props.product.id;
-    
+
       await this.props.addItem(this.props.user.id,cartItem)
       } catch (error) {
         console.log(error);
@@ -35,18 +33,17 @@ class SingleProduct extends React.Component {
     }
 
   async handleChange(event) {
-    await this.setState({value: event.target.value});
+    await this.setState({ value: event.target.value });
   }
 
   render() {
     const { product } = this.props;
 
     return (
-      
       <div key={product.id}>
         <img src={product.imageUrl} width="250" height="250" />
         <h3>{product.name}</h3>
-        <h5>{product.price/100}</h5>
+        <h5>{product.price / 100}</h5>
         <p>{product.description}</p>
         <p>Quantity Left: {product.quantity}</p>
 
@@ -62,7 +59,6 @@ class SingleProduct extends React.Component {
               );
             })}
         </select>
-          
           <input type="submit" value="add to cart" />
         </form>
       </div>

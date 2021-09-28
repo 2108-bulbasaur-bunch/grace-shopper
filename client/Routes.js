@@ -12,6 +12,7 @@ import SingleProduct from "./components/SingleProduct";
 import OrderHistory from "./components/OrderHistory";
 import Cart from "./components/Cart";
 import AllOrders from "./components/AllOrders";
+import Confirmation from "./components/Confirmation";
 
 /**
  * COMPONENT
@@ -39,6 +40,7 @@ class Routes extends Component {
 						<Route exact path="/orders/" component={AllOrders} />
 						<Route path="/orders/cart/:userId" component={Cart} />
 						<Route path="/orders/:userId" component={OrderHistory} />
+						<Route path="/confirmation" component={Confirmation}/>
 					</Switch>
 				) : (
 					<Switch>
