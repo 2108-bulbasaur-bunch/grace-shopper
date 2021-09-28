@@ -106,7 +106,7 @@ export const fetchCartThunk = (userId) => {
 						authorization: token,
 					}
 				});
-				
+
 				dispatch(get_cart(data));
 			}
 		} catch (error) {
@@ -129,7 +129,7 @@ export default function cartReducer(state = [], action) {
 				return action.item
 
 				}else{return item}
-				
+
 			})
 			return stateCopy
 			case DELETE_ITEM:
