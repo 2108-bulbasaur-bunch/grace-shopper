@@ -70,17 +70,27 @@ router.get(
 // api/orders/cart/userId/
 router.get("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 	try {
-		const order = await Order.findOne({
+		let order = await Order.findOne({
 			where: {
 				userId: req.params.userId,
 				completed: false,
 			},
 		});
+
+		// if (!order) {
+		// 	order = await Order.create({
+		// 		completed: false,
+		// 		purchaseDate: new Date(),
+		// 		userId: req.params.userId,
+		// 	});
+		// }
+
 		const cart = await Item.findAll({
 			where: {
 				orderId: order.id,
 			},
 		});
+
 		res.send(cart);
 	} catch (error) {
 		next(error);
@@ -114,7 +124,7 @@ router.put("/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 	}
 });
 
-// POST create a new cart if none are associated w/ the user
+// POST create a new cart from local storage for new user who signs up
 // api/orders/userId
 
 // router.post("/:userId", async (req, res, next) => {

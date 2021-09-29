@@ -28,7 +28,7 @@ class Cart extends React.Component {
 	}
 
 	render() {
-		const cart = this.props.cart;
+		const cart = this.props.cart
 		const products = this.props.products;
 		const id = this.props.match.params.userId;
 
@@ -95,17 +95,6 @@ class Cart extends React.Component {
 								</button>
 							</div>
 						))}
-						{/* {isLoggedIn ? (
-            <button type="button"
-            onClick={() => this.props.checkoutCart(id)}
-            >
-             <a href="/confirmation">Checkout</a>
-            </button>
-            ) : (
-              <button type="button">
-                <a href="/signup">Checkout</a>
-              </button>
-            )} */}
 						<button type="button" onClick={() => this.props.checkoutCart(id)}>
 							<a href="/confirmation">Checkout</a>
 						</button>
