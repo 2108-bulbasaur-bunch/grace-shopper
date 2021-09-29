@@ -9,7 +9,7 @@ class AllProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state={value:1}
-  
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -23,12 +23,12 @@ class AllProducts extends React.Component {
 
     try {
       let cartItem={};
-    
+
       cartItem.quantity=this.state.value;
       cartItem.purchasePrice=product.price;
       cartItem.orderId=1000;
       cartItem.productId= await product.id;
-    
+
       await this.props.addItem(this.props.user.id,cartItem)
     } catch (error) {
       console.log(error);
@@ -41,7 +41,7 @@ class AllProducts extends React.Component {
 
   render() {
     const products = this.props.products || [];
-   
+
     if (products.length === 0) {
       return <h1>Out of stock!</h1>;
     } else {
@@ -53,23 +53,23 @@ class AllProducts extends React.Component {
                 <img src={product.imageUrl} width="250" height="250" />
                 <h3>{product.name}</h3>
               </Link>
-                <h5>{product.price / 100}</h5>
+                <h5>Price: ${product.price / 100}</h5>
                 <form onSubmit={()=>this.handleSubmit(product)}>
                   <select
-                                    
+
 										onChange={this.handleChange}
 									>
 										{Array.from(Array(product.quantity), (e, i) => {
 											return (
 												<option
 													value={i + 1}
-													
+
 												>
 													{i + 1}
 												</option>
 											);
 										})}
-                                        
+
 									</select>
                   <button type="submit">Add to Cart</button>
                 </form>
