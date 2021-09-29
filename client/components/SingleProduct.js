@@ -2,42 +2,63 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct, updateProductThunk } from "../store/oneProduct";
 import { addItemThunk, fetchCartThunk } from "../store/cart";
-
 class SingleProduct extends React.Component {
-  constructor(props) {
-    super(props);
-  this.state={value:1}
+	constructor(props) {
+		super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-  async componentDidMount() {
-    const productId = this.props.match.params.productId;
-    this.props.getSingleProduct(productId);
-  }
+		const cart = localStorage.getItem("cart")
+			? JSON.parse(localStorage.getItem("cart"))
+			: [];
+		this.state = { value: 1, cart };
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+	async componentDidMount() {
+		const productId = this.props.match.params.productId;
+		this.props.getSingleProduct(productId);
+	}
+	componentDidUpdate() {
+		localStorage.setItem("cart", JSON.stringify(this.state.cart));
+	}
+	async handleSubmit(event) {
+		event.preventDefault();
+		console.log("user", this.props.user);
+		let cartItem = {};
+		cartItem.quantity = this.state.value;
+		cartItem.purchasePrice = this.props.product.price;
+		cartItem.orderId = 100;
+		cartItem.productId = await this.props.product.id;
 
-  async handleSubmit(event) {
-    event.preventDefault();
+		if (this.props.user.id) {
+			try {
+				await this.props.addItem(this.props.user.id, cartItem);
+			} catch (error) {
+				console.log(error);
+			}
+		} else {
+			await this.setState({ cart: [...this.state.cart, cartItem] });
+			console.log("this.state", this.state);
+		}
+	}
 
-    try {
-      let cartItem={};
-          cartItem.quantity=this.state.value;
-          cartItem.purchasePrice=this.props.product.price;
-          cartItem.orderId=100
-          cartItem.productId=await this.props.product.id;
-
-      await this.props.addItem(this.props.user.id,cartItem)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-  async handleChange(event) {
-    await this.setState({ value: event.target.value });
-  }
-
-  render() {
-    const { product } = this.props;
+	async handleChange(event) {
+		await this.setState({ value: event.target.value });
+	}
+	render() {
+		const { product } = this.props;
+		return (
+			<div key={product.id}>
+				<img src={product.imageUrl} width="250" height="250" />
+				<h3>{product.name}</h3>
+				<h5>{product.price / 100}</h5>
+				<p>{product.description}</p>
+				<p>Quantity Left: {product.quantity}</p>
+				<form onSubmit={this.handleSubmit}>
+					<select onChange={this.handleChange}>
+						{Array.from(Array(product.quantity), (e, i) => {
+							return <option value={i + 1}>{i + 1}</option>;
+						})}
+					</select>
 
     return (
       <div key={product.id} className="product-detail">
@@ -64,21 +85,24 @@ class SingleProduct extends React.Component {
       </div>
     );
   }
+					<input type="submit" value="add to cart" />
+				</form>
+			</div>
+		);
+	}
 }
-
 const mapState = (state) => {
-  return {
-    product: state.singleProduct,
-    user:state.auth,
-  };
+	return {
+		product: state.singleProduct,
+		user: state.auth,
+	};
 };
-
 const mapDispatch = (dispatch) => {
-  return {
-    getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
-    updateProduct: (product) => dispatch(updateProductThunk(product)),
-    addItem: (userId, item) => dispatch(addItemThunk(userId, [item])),
-  };
+	return {
+		getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
+		updateProduct: (product) => dispatch(updateProductThunk(product)),
+		addItem: (userId, item) => dispatch(addItemThunk(userId, [item])),
+	};
 };
 
 export default connect(mapState, mapDispatch)(SingleProduct);
