@@ -1,9 +1,27 @@
 body {
   font-family: sans-serif;
+  color: teal;
 }
 
 a {
   text-decoration: none;
+  color: teal;
+}
+
+button {
+  background-color: teal;
+  color: white;
+  border-radius: 10px;
+}
+
+.submit-button {
+  background-color: teal;
+  color: white;
+  border-radius: 10px;
+}
+
+select {
+  border-radius: 10px;
 }
 
 label {
@@ -29,4 +47,45 @@ form div {
 
 .indiv-product {
   margin: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: rgb(162, 205, 183);
+}
+
+.all-users {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.users {
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.item-in-cart{
+  margin: 20px;
+}
+
+.quantity-tracker{
+  color: white;
+  font-size: 7px;
+}
+
+.purchase-price {
+  margin: 5px;
+}
+
+img {
+  border-radius: 25px;
+}
+
+.wrap-description {
+  max-width: 350px;
+}
+
+button a {
+  color: white;
 }

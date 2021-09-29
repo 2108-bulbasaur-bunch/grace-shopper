@@ -13,11 +13,10 @@ export class SingleUser extends React.Component {
 			<div>
 				<h1>User infomation</h1>
 				{user ? (
-					<div>
-						<div>{user.id}</div>
-						<div>{user.firstName + " " + user.lastName}</div>
-						<div>{user.email}</div>
-						<div>{user.shippingAddress}</div>
+					<div className="user-details">
+						<div>Name: {user.firstName + " " + user.lastName}</div>
+						<div>Email: {user.email}</div>
+						<div>Shipping Address:{user.shippingAddress}</div>
 						<div>{user.isAdmin ? <div>admin</div> : <div />}</div>
 					</div>
 				) : (

@@ -43,8 +43,8 @@ class SingleProduct extends React.Component {
       <div key={product.id}>
         <img src={product.imageUrl} width="250" height="250" />
         <h3>{product.name}</h3>
-        <h5>{product.price / 100}</h5>
-        <p>{product.description}</p>
+        <h5>Price: ${product.price / 100}</h5>
+        <p className="wrap-description">{product.description}</p>
         <p>Quantity Left: {product.quantity}</p>
 
         <form onSubmit={this.handleSubmit}>
@@ -59,7 +59,7 @@ class SingleProduct extends React.Component {
               );
             })}
         </select>
-          <input type="submit" value="add to cart" />
+          <input className="submit-button" type="submit" value="add to cart" />
         </form>
       </div>
     );

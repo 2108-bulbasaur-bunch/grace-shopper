@@ -16,13 +16,12 @@ export class AllUsers extends React.Component {
 					{!allUsers[0] ? (
 						<h2>No Users</h2>
 					) : (
-						<div>
+						<div className="all-users">
 							{allUsers.map((user) => (
 								<Link to={`/users/${user.id}`} key={user.id}>
-									<div>
-										<div>{user.firstName}</div>
-										<div>{user.lastName}</div>
-										<div>{user.email}</div>
+									<div className="user">
+										<p>Name: {user.firstName} {user.lastName}</p>
+										<p>Email: {user.email}</p>
 									</div>
 								</Link>
 							))}

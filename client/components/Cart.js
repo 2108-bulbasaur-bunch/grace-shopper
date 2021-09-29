@@ -36,7 +36,16 @@ class Cart extends React.Component {
         ) : (
           <div>
             {cart.map((item, idx) => (
-              <div key={idx}>
+              <div key={idx} className="item-in-cart">
+                  <div>
+                  {!products[0] ? (
+                    <div>loading</div>
+                  ) : (
+                    <img src={products.filter(
+                      (product) => product.id === item.productId
+                    )[0].imageUrl} width="150" height="150"/>
+                  )}
+                </div>
                 <div>
                   {!products[0] ? (
                     <div>loading</div>
@@ -46,15 +55,15 @@ class Cart extends React.Component {
                     )[0].name
                   )}
                 </div>
-
-                <div>
-                  <div>in stock:</div>
+                  <div className="quantity-tracker">in stock:
                   {
                     (quantity = products.filter(
                       (product) => product.id === item.productId
                     )[0].quantity)
                   }
-
+                  </div>
+                  <div>
+                    Quantity:
                   <select
                     onChange={(event) =>
                       this.changeQty(item, event.target.value)
@@ -74,8 +83,8 @@ class Cart extends React.Component {
                                         <option selected={'2'== item.quantity ? true : false} value='2'>2</option>
                                         <option selected={'35'== item.quantity ? true : false} value='35'>35</option> */}
                   </select>
-                </div>
-                <div>purchasePrice: ${item.purchasePrice / 100}</div>
+                  </div>
+                <div className="purchase-price">Price: ${item.purchasePrice / 100}</div>
                 <button
                   type="button"
                   onClick={() =>
