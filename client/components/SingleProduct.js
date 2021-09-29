@@ -46,19 +46,19 @@ class SingleProduct extends React.Component {
 	}
 	render() {
 		const { product } = this.props;
-		return (
-			<div key={product.id}>
-				<img src={product.imageUrl} width="250" height="250" />
-				<h3>{product.name}</h3>
-				<h5>{product.price / 100}</h5>
-				<p>{product.description}</p>
-				<p>Quantity Left: {product.quantity}</p>
-				<form onSubmit={this.handleSubmit}>
-					<select onChange={this.handleChange}>
-						{Array.from(Array(product.quantity), (e, i) => {
-							return <option value={i + 1}>{i + 1}</option>;
-						})}
-					</select>
+		// return (
+		// 	<div key={product.id}>
+		// 		<img src={product.imageUrl} width="250" height="250" />
+		// 		<h3>{product.name}</h3>
+		// 		<h5>{product.price / 100}</h5>
+		// 		<p>{product.description}</p>
+		// 		<p>Quantity Left: {product.quantity}</p>
+		// 		<form onSubmit={this.handleSubmit}>
+		// 			<select onChange={this.handleChange}>
+		// 				{Array.from(Array(product.quantity), (e, i) => {
+		// 					return <option value={i + 1}>{i + 1}</option>;
+		// 				})}
+		// 			</select>
 
     return (
       <div key={product.id} className="product-detail">
@@ -85,12 +85,8 @@ class SingleProduct extends React.Component {
       </div>
     );
   }
-					<input type="submit" value="add to cart" />
-				</form>
-			</div>
-		);
-	}
 }
+
 const mapState = (state) => {
 	return {
 		product: state.singleProduct,
