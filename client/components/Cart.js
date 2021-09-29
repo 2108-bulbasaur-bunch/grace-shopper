@@ -5,6 +5,7 @@ import {
 	updateQtyThunk,
 	deleteItemThunk,
 	checkoutThunk,
+	addItemThunk,
 } from "../store/cart";
 import { fetchProducts } from "../store/products";
 
@@ -18,17 +19,18 @@ class Cart extends React.Component {
 		const id = this.props.match.params.userId;
 		this.props.getProducts();
 		this.props.getCart(id);
+		let guestCart = JSON.parse(localStorage.getItem("cart"));
+		this.props.addItems(id, guestCart)
 	}
 
 	async changeQty(item, value) {
 		const updatedItem = item;
 		updatedItem.quantity = Number(value);
-		console.log("updateItem", updatedItem);
 		await this.props.changeQty(this.props.match.params.userId, updatedItem);
 	}
 
 	render() {
-		const cart = this.props.cart
+		let cart = this.props.cart
 		const products = this.props.products;
 		const id = this.props.match.params.userId;
 
@@ -121,6 +123,7 @@ const mapDispatch = (dispatch, { history }) => {
 		deleteItem: (userId, body, history) =>
 			dispatch(deleteItemThunk(userId, body, history)),
 		checkoutCart: (userId) => dispatch(checkoutThunk(userId)),
+		addItems: (userId, items) => dispatch(addItemThunk(userId, items))
 	};
 };
 

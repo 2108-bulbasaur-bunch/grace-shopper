@@ -77,13 +77,13 @@ router.get("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 			},
 		});
 
-		// if (!order) {
-		// 	order = await Order.create({
-		// 		completed: false,
-		// 		purchaseDate: new Date(),
-		// 		userId: req.params.userId,
-		// 	});
-		// }
+		if (!order) {
+			order = await Order.create({
+				completed: false,
+				purchaseDate: new Date(),
+				userId: req.params.userId,
+			});
+		}
 
 		const cart = await Item.findAll({
 			where: {
