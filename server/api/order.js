@@ -100,7 +100,6 @@ router.get("/cart/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
 // PUT checkout cart - change to completed
 // api/orders/cart/userId/
 
-<<<<<<< HEAD
 router.put("/:userId", async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
@@ -109,16 +108,6 @@ router.put("/:userId", async (req, res, next) => {
         completed: false,
       },
     });
-=======
-router.put("/:userId", isLoggedIn, isSameUser, async (req, res, next) => {
-	try {
-		const userOrder = await Order.findOne({
-			where: {
-				userId: req.params.userId,
-				completed: false,
-			},
-		});
->>>>>>> main
 		// let date = new Date(Date.now())
 		// await userOrder.update({
 		// 	completed: true,
