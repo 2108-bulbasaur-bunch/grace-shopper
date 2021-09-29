@@ -39,13 +39,14 @@ class Cart extends React.Component {
 		let cart = this.props.cart;
 		const products = this.props.products;
 		const id = this.props.match.params.userId;
+		const options2 = { style: "currency", currency: "USD" };
 
 		let quantity = 0;
 		return (
 			<div>
 				<h2>Cart</h2>
 				{!cart[0] ? (
-					<div>empty cart</div>
+					<div>Add some sweets!</div>
 				) : (
 					<div>
 						{cart.map((item, idx) => (
@@ -105,7 +106,10 @@ class Cart extends React.Component {
 									</select>
 								</div>
 								<div className="purchase-price">
-									Price: ${item.purchasePrice / 100}
+									Price:{" "}
+									{new Intl.NumberFormat("en-US", options2).format(
+										item.purchasePrice / 100
+									)}
 								</div>
 								<button
 									type="button"
@@ -117,7 +121,7 @@ class Cart extends React.Component {
 										)
 									}
 								>
-									delete
+									Delete
 								</button>
 							</div>
 						))}

@@ -52,7 +52,7 @@ class AllProducts extends React.Component {
 
 	render() {
 		const products = this.props.products || [];
-
+		const options2 = { style: "currency", currency: "USD" };
 		if (products.length === 0) {
 			return <h1>Out of stock!</h1>;
 		} else {
@@ -64,7 +64,12 @@ class AllProducts extends React.Component {
 								<img src={product.imageUrl} width="250" height="250" />
 								<h3>{product.name}</h3>
 							</Link>
-							<h5>Price: ${product.price / 100}</h5>
+							<h5>
+								Price:{" "}
+								{new Intl.NumberFormat("en-US", options2).format(
+									product.price / 100
+								)}
+							</h5>
 							<form onSubmit={() => this.handleSubmit(product)}>
 								<select onChange={this.handleChange}>
 									{Array.from(Array(product.quantity), (e, i) => {

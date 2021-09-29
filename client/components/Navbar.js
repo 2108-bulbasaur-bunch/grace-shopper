@@ -26,7 +26,7 @@ const Navbar = ({ handleClick, isLoggedIn, userId }) => (
 					<Link to="/login">Login</Link>
 					<Link to="/signup">Sign Up</Link>
 					{/*THE BELOW NEEDS TO BE ADJUSTED FOR GUEST STILL*/}
-					<Link to="/orders/cart">Your Cart</Link>
+					<Link to="/cart/guest">Your Cart</Link>
 				</div>
 			)}
 		</nav>

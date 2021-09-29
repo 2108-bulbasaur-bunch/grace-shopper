@@ -37,7 +37,6 @@ class SingleProduct extends React.Component {
 			}
 		} else {
 			await this.setState({ cart: [...this.state.cart, cartItem] });
-			console.log("this.state", this.state);
 		}
 	}
 
@@ -46,25 +45,13 @@ class SingleProduct extends React.Component {
 	}
 	render() {
 		const { product } = this.props;
-		// return (
-		// 	<div key={product.id}>
-		// 		<img src={product.imageUrl} width="250" height="250" />
-		// 		<h3>{product.name}</h3>
-		// 		<h5>{product.price / 100}</h5>
-		// 		<p>{product.description}</p>
-		// 		<p>Quantity Left: {product.quantity}</p>
-		// 		<form onSubmit={this.handleSubmit}>
-		// 			<select onChange={this.handleChange}>
-		// 				{Array.from(Array(product.quantity), (e, i) => {
-		// 					return <option value={i + 1}>{i + 1}</option>;
-		// 				})}
-		// 			</select>
+		const options2 = { style: 'currency', currency: 'USD' };
 
     return (
       <div key={product.id} className="product-detail">
         <img src={product.imageUrl} width="250" height="250" />
         <h3>{product.name}</h3>
-        <h5>Price: ${product.price / 100}</h5>
+        <h5>Price: {new Intl.NumberFormat('en-US', options2).format(product.price / 100)}</h5>
         <p className="wrap-description">{product.description}</p>
         <p className="quantity-tracker">Quantity Left: {product.quantity}</p>
 
