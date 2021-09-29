@@ -3,6 +3,22 @@ body {
   color: teal;
 }
 
+#nav{
+  background-color: rgb(162, 205, 183);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nav h1 {
+  margin: 25px;
+}
+
+#nav a:hover{
+  text-decoration: underline;
+}
+
 a {
   text-decoration: none;
   color: teal;
@@ -88,4 +104,8 @@ img {
 
 button a {
   color: white;
+}
+
+.product-detail {
+  margin-top: 25px;
 }

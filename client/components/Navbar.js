@@ -5,7 +5,7 @@ import { logout } from "../store";
 import SingleUser from "./SingleUser";
 
 const Navbar = ({ handleClick, isLoggedIn, userId }) => (
-	<div>
+	<div id="nav">
 		<h1>Bulbasaur's Bake Shop</h1>
 		<nav>
 			{isLoggedIn ? (
@@ -30,7 +30,6 @@ const Navbar = ({ handleClick, isLoggedIn, userId }) => (
 				</div>
 			)}
 		</nav>
-		<hr />
 	</div>
 );
 
