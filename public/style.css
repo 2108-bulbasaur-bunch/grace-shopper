@@ -109,3 +109,12 @@ button a {
 .product-detail {
   margin-top: 25px;
 }
+
+.purchase-price-guest {
+  margin: 2px;
+  padding: 2px;
+}
+
+p a {
+  text-decoration: underline;
+}
